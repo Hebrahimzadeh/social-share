@@ -131,7 +131,7 @@ class ShareTest extends TestCase
             'service2'
         );
 
-        $this->assertEquals($this->expected, $actual);
+        $this->assertEquals($this->expected, $actual->getLinks());
     }
 
     public function testServicesWithArray()
@@ -158,13 +158,13 @@ class ShareTest extends TestCase
             ]
         );
 
-        $this->assertEquals($this->expected, $actual);
+        $this->assertEquals($this->expected, $actual->getLinks());
     }
 
     public function testDefaultIsAll()
     {
         $actual = Share::load('http://www.example.com', 'Example', 'Media')->services();
-        $this->assertEquals($this->expected, $actual);
+        $this->assertEquals($this->expected, $actual->getLinks());
     }
 
     protected function assertPageFound($url)

@@ -13,9 +13,68 @@ class Share
     protected $title;
     protected $media;
 
+    /**
+     * Font awesome version
+     * @var int
+     */
+    protected $fontAwesomeVersion = 5;
+
+    /**
+     * Extra options for the share links
+     *
+     * @var array
+     */
+    protected $options = [];
+
+    /**
+     * The generated urls
+     *
+     * @var array
+     */
+    protected $generatedLinks = [];
+
+    /**
+     * Html to prefix before the share links
+     *
+     * @var string
+     */
+    protected $prefix = '<div id="social-links"><ul>';
+
+    /**
+     * Html to append after the share links
+     *
+     * @var string
+     */
+    protected $suffix = '</ul></div>';
+
+    /**
+     * The generated html
+     *
+     * @var string
+     */
+    protected $html = '';
+
+    /**
+     * Return a string with html at the end
+     * of the chain.
+     *
+     * @return string
+     */
+    public function __toString()
+    {
+        foreach ($this->generatedLinks as $provider => $url){
+            $this->buildLink($provider, $url);
+        }
+        $this->html = $this->prefix . $this->html;
+        $this->html .= $this->suffix;
+        return $this->html;
+    }
+
+
     public function __construct($app)
     {
         $this->app = $app;
+        $this->fontAwesomeVersion = config('laravel-share.fontAwesomeVersion', 5);
     }
 
     public function load($url, $title = '', $media = '')
@@ -37,25 +96,13 @@ class Share
             $services = $services[0];
         }
 
-        $object = false;
-        if (end($services) === true) {
-            $object = true;
-            array_pop($services);
-        }
-
-        $return = [];
-
         if ($services) {
             foreach ($services as $service) {
-                $return[$service] = $this->$service();
+                $this->$service();
             }
         }
 
-        if ($object) {
-            return (object) $return;
-        }
-
-        return $return;
+        return $this;
     }
 
     protected function generateUrl($serviceId)
@@ -77,7 +124,48 @@ class Share
 
         $view = Arr::get($vars['service'], 'view', 'social-share::default');
 
-        return trim(View::make($view, $vars)->render());
+        $this->generatedLinks[$serviceId] = ($url = trim(View::make($view, $vars)->render()));
+        return $url;
+    }
+
+    public function getLinks()
+    {
+        return $this->generatedLinks;
+    }
+
+    /**
+     * Build a single link
+     *
+     * @param string $provider
+     * @param string $url
+     */
+    protected function buildLink($provider, $url)
+    {
+        $this->html .= trans("laravel-share::laravel-share-fa$this->fontAwesomeVersion.$provider", [
+            'url' => $url,
+            'class' => array_key_exists('class', $this->options) ? $this->options['class'] : '',
+            'id' => array_key_exists('id', $this->options) ? $this->options['id'] : '',
+            'title' => array_key_exists('title', $this->options) ? $this->options['title'] : '',
+            'rel' => array_key_exists('rel', $this->options) ? $this->options['rel'] : '',
+        ]);
+
+    }
+
+    /**
+     * Optionally Set custom prefix and/or suffix
+     *
+     * @param string $prefix
+     * @param string $suffix
+     */
+    protected function setPrefixAndSuffix($prefix, $suffix)
+    {
+        if (!is_null($prefix)) {
+            $this->prefix = $prefix;
+        }
+
+        if (!is_null($suffix)) {
+            $this->suffix = $suffix;
+        }
     }
 
     public function __call($name, $arguments)

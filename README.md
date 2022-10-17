@@ -46,7 +46,7 @@ Get many links
 ```php
 Route::get('/', function()
 {
-    return Share::load('http://www.example.com', 'Link description')->services('facebook', 'twitter');
+    return Share::load('http://www.example.com', 'Link description')->services('facebook', 'twitter')->getLinks();
 });
 ```
 
