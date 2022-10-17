@@ -1,5 +1,5 @@
 {
-    "name": "chencha/share",
+    "name": "hebrahimzadeh/share",
     "description": "Share links with Laravel",
     "license": "MIT",
     "keywords": [
@@ -18,6 +18,10 @@
         {
             "name": "datashaman",
             "email": "marlinf@datashaman.com"
+        },
+        {
+            "name": "hebrahimzadeh",
+            "email": "abi.hossein@gmail.com"
         }
     ],
     "require": {
