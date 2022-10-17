@@ -30,13 +30,12 @@
     },
     "require-dev": {
         "orchestra/testbench": "^4 || ^5 || ^6 || ^7",
-        "rector/rector": "0.13.x-dev",
-        "tightenco/tlint": "dev-main"
+        "tightenco/tlint": "dev-main",
+        "rector/rector": "^0.14.x-dev"
     },
-    "minimum-stability": "dev",
     "autoload": {
         "psr-4": {
-            "Chencha\\Share\\": "src/",
+            "Hebrahimzadeh\\Share\\": "src/",
             "Tests\\": "tests/"
         }
     },
@@ -48,10 +47,10 @@
     "extra": {
         "laravel": {
             "aliases": {
-                "Share": "Chencha\\Share\\ShareFacade"
+                "Share": "Hebrahimzadeh\\Share\\ShareFacade"
             },
             "providers": [
-                "Chencha\\Share\\ShareServiceProvider"
+                "Hebrahimzadeh\\Share\\ShareServiceProvider"
             ]
         }
     }

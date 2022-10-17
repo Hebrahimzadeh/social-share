@@ -71,7 +71,7 @@ Returns an array of results for all defined services.
 
 Publish the package config:
 ```php
-php artisan vendor:publish --provider='Chencha\Share\ShareServiceProvider'
+php artisan vendor:publish --provider='Hebrahimzadeh\Share\ShareServiceProvider'
 ```
 Add a new service in config/social-share.php:
 ```php
@@ -106,6 +106,6 @@ Notice the use of *<?php echo $sep; ?>*. It's the only way to print out an unenc
 
 When the package is upgraded, changes to the config and views should be republished into your project:
 
-    php artisan vendor:publish --provider='Chencha\Share\ShareServiceProvider'
+    php artisan vendor:publish --provider='Hebrahimzadeh\Share\ShareServiceProvider'
 
 Use source control to work out what has changed if you have customized the files.

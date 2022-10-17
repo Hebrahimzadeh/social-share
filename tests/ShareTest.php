@@ -2,7 +2,7 @@
 
 namespace Tests;
 
-use Chencha\Share\ShareFacade as Share;
+use Hebrahimzadeh\Share\ShareFacade as Share;
 use GuzzleHttp\Client;
 use Illuminate\Support\Facades\View;
 
@@ -330,14 +330,14 @@ class ShareTest extends TestCase
     protected function getPackageProviders($app)
     {
         return [
-            \Chencha\Share\ShareServiceProvider::class,
+            \Hebrahimzadeh\Share\ShareServiceProvider::class,
         ];
     }
 
     protected function getPackageAliases($app)
     {
         return [
-            'Share' => \Chencha\Share\ShareFacade::class,
+            'Share' => \Hebrahimzadeh\Share\ShareFacade::class,
         ];
     }
 

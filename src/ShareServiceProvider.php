@@ -1,6 +1,6 @@
 <?php
 
-namespace Chencha\Share;
+namespace Hebrahimzadeh\Share;
 
 use Illuminate\Support\ServiceProvider;
 
