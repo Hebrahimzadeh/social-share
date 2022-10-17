@@ -25,7 +25,7 @@
 
 Install Composer dependency into your project
 
-    composer require chencha/share
+    composer require hebrahimzadeh/laravel-share
 
 ## Usage
 
