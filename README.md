@@ -1,8 +1,7 @@
 # Share
 
 **Share links with Laravel**
-
-This is a fork of John's share for Laravel 4. 
+ 
  
 ## Services available
 
@@ -31,50 +30,53 @@ Install Composer dependency into your project
 ## Usage
 
 Get a link (example with Twitter)
-
-	Route::get('/', function()
-	{
-		return Share::load('http://www.example.com', 'My example')->twitter();
-	});
+```php
+Route::get('/', function()
+{
+    return Share::load('http://www.example.com', 'My example')->twitter();
+});
+```
 
 Returns a string :
-
-	https://twitter.com/intent/tweet?url=http%3A%2F%2Fwww.example.com&text=Link+description
-
+```link
+https://twitter.com/intent/tweet?url=http%3A%2F%2Fwww.example.com&text=Link+description
+```
 
 Get many links
-
-	Route::get('/', function()
-	{
-		return Share::load('http://www.example.com', 'Link description')->services('facebook', 'twitter');
-	});
+```php
+Route::get('/', function()
+{
+    return Share::load('http://www.example.com', 'Link description')->services('facebook', 'twitter');
+});
+```
 
 Returns an array :
-
-    {
-        "twitter" : "https://twitter.com/intent/tweet?url=http%3A%2F%2Fwww.example.com&text=Link+description",
-        "facebook" : "https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Fwww.example.com&title=Link+description"
-    }
-
+```json
+{
+    "twitter" : "https://twitter.com/intent/tweet?url=http%3A%2F%2Fwww.example.com&text=Link+description",
+    "facebook" : "https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Fwww.example.com&title=Link+description"
+}
+```
 
 Get ALL the links
-
-	Route::get('/', function()
-	{
-		return Share::load('http://www.example.com', 'Link description')->services();
-	});
-
+```php
+Route::get('/', function()
+{
+    return Share::load('http://www.example.com', 'Link description')->services();
+});
+```
 Returns an array of results for all defined services.
 
 ## Customization
 
 Publish the package config:
-
-    php artisan vendor:publish --provider='Chencha\Share\ShareServiceProvider'
-
+```php
+php artisan vendor:publish --provider='Chencha\Share\ShareServiceProvider'
+```
 Add a new service in config/social-share.php:
-
-    'mynewservice' => [ 'view' => 'share.mynewservice' ]
+```php
+'mynewservice' => [ 'view' => 'share.mynewservice' ]
+```
 
 Add Blade templating code in *share.mynewservice* view file to generate a URL for *mynewservice*. You have access to:
 
