@@ -33,7 +33,7 @@ Get a link (example with Twitter)
 ```php
 Route::get('/', function()
 {
-    return Share::load('http://www.example.com', 'My example')->twitter();
+    return Share::page('http://www.example.com', 'My example')->twitter();
 });
 ```
 
@@ -46,7 +46,7 @@ Get many links
 ```php
 Route::get('/', function()
 {
-    return Share::load('http://www.example.com', 'Link description')->services('facebook', 'twitter')->getLinks();
+    return Share::page('http://www.example.com', 'Link description')->services('facebook', 'twitter')->getLinks();
 });
 ```
 
@@ -62,7 +62,7 @@ Get ALL the links
 ```php
 Route::get('/', function()
 {
-    return Share::load('http://www.example.com', 'Link description')->services();
+    return Share::page('http://www.example.com', 'Link description')->services();
 });
 ```
 Returns an array of results for all defined services.

@@ -19,7 +19,7 @@ return [
         'pinterest' => ['uri' => 'https://pinterest.com/pin/create/button/', 'only' => ['url']],
         'reddit' => ['uri' => 'https://www.reddit.com/submit'],
         'scoopit' => ['uri' => 'https://www.scoop.it/bookmarklet', 'only' => ['url']],
-        'telegramMe' => ['uri' => 'https://telegram.me/share/url', 'titleName' => 'text'],
+        'telegram' => ['uri' => 'https://telegram.me/share/url', 'titleName' => 'text'],
         'tumblr' => ['uri' => 'https://www.tumblr.com/widgets/share/tool', 'urlName' => 'canonicalUrl'],
         'twitter' => ['uri' => 'https://twitter.com/intent/tweet', 'titleName' => 'text'],
         'vk' => ['uri' => 'http://vk.com/share.php', 'mediaName' => 'image', 'extra' => [

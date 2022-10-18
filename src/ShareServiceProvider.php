@@ -21,6 +21,10 @@ class ShareServiceProvider extends ServiceProvider
         $configPath = __DIR__ . '/../config/social-share.php';
         $this->publishes([$configPath => config_path('social-share.php')]);
         $this->loadViewsFrom(__DIR__ . '/../views', 'social-share');
+        $this->loadTranslationsFrom(__DIR__ . '/../resources/lang/', 'laravel-share');
+        $this->publishes([
+            __DIR__ . '/../../resources/lang/' => resource_path('lang/vendor/laravel-share'),
+        ], 'translations');
     }
 
     /**

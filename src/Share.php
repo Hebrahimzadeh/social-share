@@ -3,14 +3,29 @@
 namespace Hebrahimzadeh\Share;
 
 use Illuminate\Support\Arr;
+use Illuminate\Support\Facades\Lang;
 use Illuminate\Support\Facades\View;
 
 class Share
 {
     protected $app;
 
+    /**
+     * the social link
+     * @var string
+     */
     protected $url;
+
+    /**
+     * The title for send to social
+     * @var string
+     */
     protected $title;
+
+    /**
+     * the string value for append social link
+     * @var string
+     */
     protected $media;
 
     /**
@@ -54,6 +69,12 @@ class Share
      */
     protected $html = '';
 
+    public function __construct($app)
+    {
+        $this->app = $app;
+        $this->fontAwesomeVersion = config('laravel-share.fontAwesomeVersion', 5);
+    }
+
     /**
      * Return a string with html at the end
      * of the chain.
@@ -70,14 +91,14 @@ class Share
         return $this->html;
     }
 
-
-    public function __construct($app)
-    {
-        $this->app = $app;
-        $this->fontAwesomeVersion = config('laravel-share.fontAwesomeVersion', 5);
-    }
-
-    public function load($url, $title = '', $media = '')
+    /**
+     * set page url options
+     * @param $url
+     * @param $title
+     * @param $media
+     * @return $this
+     */
+    public function page($url, $title = '', $media = '')
     {
         $this->url = $url;
         $this->title = $title;
@@ -141,6 +162,9 @@ class Share
      */
     protected function buildLink($provider, $url)
     {
+        if (! Lang::has("laravel-share::laravel-share-fa$this->fontAwesomeVersion.$provider")) {
+            return ;
+        }
         $this->html .= trans("laravel-share::laravel-share-fa$this->fontAwesomeVersion.$provider", [
             'url' => $url,
             'class' => array_key_exists('class', $this->options) ? $this->options['class'] : '',
