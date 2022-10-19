@@ -1,6 +1,16 @@
 <?php
 
 return [
+    /*
+   |--------------------------------------------------------------------------
+   | Font Awesome
+   |--------------------------------------------------------------------------
+   |
+   | Specify the version of Font Awesome that you want to use.
+   |
+   |
+   */
+    'fontAwesomeVersion' => 6,
     'separator' => '&',
     'services' => [
         'blogger' => ['uri' => 'https://www.blogger.com/blog-this.g', 'urlName' => 'u', 'titleName' => 'n'],

@@ -32,7 +32,7 @@ class Share
      * Font awesome version
      * @var int
      */
-    protected $fontAwesomeVersion = 5;
+    protected $fontAwesomeVersion = 6;
 
     /**
      * Extra options for the share links
@@ -72,7 +72,7 @@ class Share
     public function __construct($app)
     {
         $this->app = $app;
-        $this->fontAwesomeVersion = config('laravel-share.fontAwesomeVersion', 5);
+        $this->fontAwesomeVersion = config('social-share.fontAwesomeVersion', 6);
     }
 
     /**
