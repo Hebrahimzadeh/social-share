@@ -64,6 +64,7 @@ class ShareTest extends TestCase
 
     public function testViewItems()
     {
+        $this->app->config->set('social-share.fontAwesomeVersion', 5);
         $html = Share::page('http://www.example.com', 'This page is')->services(['telegram']);
         $this->assertStringContainsString('<div id="social-links"><ul><li><a target="_blank" href="https://telegram.me/share/url?url=http%3A%2F%2Fwww.example.com&text=This%20page%20is" class="social-button " id="" title="" rel=""><span class="fab fa-telegram"></span></a></li></ul></div>', $html);
     }
